@@ -21,6 +21,19 @@
         </td>
         <td>コメント数：<%= book.book_comments.count %></td>
         <td>閲覧数：<%= book.view_counts.count %></td>
+        <td>
+          <div id="index_raty<%= book.id %>"></div>
+          <script>
+            let eleme = document.querySelector('#index_raty<%= book.id %>');
+            let opti = {
+              starOn: "<%= asset_path('star-on.png') %>",
+              starOff: "<%= asset_path('star-off.png') %>",
+              readOnly: true,
+              score: <%= book.rate %>
+            };
+            raty(eleme,opti);
+          </script>
+        </td>
       </tr>
     <% end %>
   </tbody>
