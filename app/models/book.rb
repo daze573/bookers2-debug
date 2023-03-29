@@ -7,6 +7,10 @@ class Book < ApplicationRecord
   validates :title,presence:true
   validates :body,presence:true,length:{maximum:200}
 
+  scope :latest, -> {order(created_at: :desc)}
+  scope :old, -> {order(created_at: :asc)}
+  scope :star_count, -> {order(rate: :desc)}
+
   scope :created_today, -> { where(created_at: Time.zone.now.all_day) }
   scope :created_yesterday, -> { where(created_at: 1.day.ago.all_day) }
   scope :created_2days, -> { where(created_at: 2.days.ago.all_day) }
