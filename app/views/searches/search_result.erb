@@ -5,16 +5,16 @@
     <thead>
       <tr>
         <th></th>
-        <th>name</th>
-        <th>introduction</th>
+        <th>Name</th>
+        <th>Introduction</th>
       </tr>
     </thead>
     <tbody>
       <% @users.each do |user| %>
         <tr>
           <td><%= image_tag user.get_profile_image, size:'50x50' %></td>
-          <td><%= user.name %></td>
-          <td><%=user.introduction %></td>
+          <td><%= link_to user.name, user_path(user.id) %></td>
+          <td><%= user.introduction %></td>
         </tr>
       <% end %>
     </tbody>
@@ -25,6 +25,8 @@
         <th></th>
         <th>Title</th>
         <th>Opinion</th>
+        <th>Tag</th>
+        <th colspan="4"></th>
       </tr>
     </thead>
     <tbody>
@@ -33,6 +35,27 @@
           <td><%= image_tag book.user.get_profile_image, size:"50x50" %></td>
           <td><%= link_to book.title, book %></td>
           <td><%= book.body %></td>
+          <td><%= link_to book.tag, tag_search_path(word: book.tag) %></td>
+          <td id="favorite_buttons_<%= book.id %>">
+            <%= render "favorites/favorites", book: book %>
+          </td>
+          <td>コメント数：<%= book.book_comments.count %></td>
+          <td>閲覧数：<%= book.view_counts.count %></td>
+          <td>
+            <div id="index_raty<%= book.id %>"></div>
+            <script>
+              if (true) {
+                let elem = document.querySelector('#index_raty<%= book.id %>');
+                let opt = {
+                  starOn: "<%= asset_path('star-on.png') %>",
+                  starOff: "<%= asset_path('star-off.png') %>",
+                  readOnly: true,
+                  score: <%= book.rate %>,
+                };
+                raty(elem,opt);
+              };
+            </script>
+          </td>
         </tr>
       <% end %>
     </tbody>
