@@ -20,6 +20,9 @@ window.raty = function(elem,opt) {
   return raty;
 }
 
+window.$ = window.jQuery = require('jquery');
+
+
 require("chartkick")
 require("chart.js")
 
