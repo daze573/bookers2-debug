@@ -1,1 +1,48 @@
-a
+<table class="table table-hover table-inverse">
+  <% if @range == "User" %>
+  <% else %>
+  <h2>Books search for "<%= @word %>"</h2>
+    <thead>
+      <tr>
+        <th></th>
+        <th>Title</th>
+        <th>Opinion</th>
+        <th>Tag</th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @books.each do |book| %>
+        <tr>
+          <td><%= image_tag book.user.get_profile_image, size:"50x50" %></td>
+          <td><%= link_to book.title, book %></td>
+          <td><%= book.body %></td>
+          <td><%= book.tag %></td>
+          <td id="favorite_buttons_<%= book.id %>">
+            <%= render "favorites/favorites", book: book %>
+          </td>
+          <td>コメント数：<%= book.book_comments.count %></td>
+          <td>閲覧数：<%= book.view_counts.count %></td>
+          <td>
+            <div id="index_raty<%= book.id %>"></div>
+            <script>
+              if (true) {
+                let elem = document.querySelector('#index_raty<%= book.id %>');
+                let opt = {
+                  starOn: "<%= asset_path('star-on.png') %>",
+                  starOff: "<%= asset_path('star-off.png') %>",
+                  readOnly: true,
+                  score: <%= book.rate %>,
+                };
+                raty(elem,opt);
+              };
+            </script>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  <% end %>
+</table>

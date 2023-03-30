@@ -10,14 +10,16 @@
   </div>
   <div id="edit_raty" class="mb-3"></div>
   <script>
-    let element = document.querySelector('#edit_raty');
-    let option = {
-      starOn: "<%= asset_path('star-on.png') %>",
-      starOff: "<%= asset_path('star-off.png') %>",
-      readOnly: true,
-      score: <%= book.rate %>
+    if (true) {
+      let elem = document.querySelector('#edit_raty');
+      let opt = {
+        starOn: "<%= asset_path('star-on.png') %>",
+        starOff: "<%= asset_path('star-off.png') %>",
+        readOnly: true,
+        score: <%= book.rate %>
+      };
+      raty(elem,opt);
     };
-    raty(element,option);
   </script>
   <div class="form-group">
     <%= f.submit class: 'btn btn-success' %>
