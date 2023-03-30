@@ -26,14 +26,16 @@
         <td>
           <div id="index_raty<%= book.id %>"></div>
           <script>
-            let elem = (document.querySelector('#index_raty<%= book.id %>');
-            let opt = {
-              starOn: "<%= asset_path('star-on.png') %>",
-              starOff: "<%= asset_path('star-off.png') %>",
-              readOnly: true,
-              score: <%= book.rate %>,
+            if (true) {
+              let elem = document.querySelector('#index_raty<%= book.id %>');
+              let opt = {
+                starOn: "<%= asset_path('star-on.png') %>",
+                starOff: "<%= asset_path('star-off.png') %>",
+                readOnly: true,
+                score: <%= book.rate %>,
+              };
+              raty(elem,opt);
             };
-            raty(elem,opt);
           </script>
         </td>
       </tr>
