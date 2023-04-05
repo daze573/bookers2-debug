@@ -13,6 +13,7 @@ import "bootstrap"
 import '@fortawesome/fontawesome-free/js/all';
 import "../stylesheets/application"
 import "chartkick/chart.js"
+import "chart.js";
 import Raty from "raty.js"
 window.raty = function(elem,opt) {
   let raty =  new Raty(elem,opt)

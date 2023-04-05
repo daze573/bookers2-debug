@@ -85,11 +85,10 @@
         </table>
       </div>
       <canvas id="myChart"></canvas>
-      <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
       <script>
       $(document).on('turbolinks:load', function() {
-        let ctx = document.getElementById('myChart');
-        let myChart = new Chart(ctx, {
+        var ctx = document.getElementById('myChart');
+        var myChart = new Chart(ctx, {
           type: 'line',
           data: {
             labels: ['６日前', '５日前', '４日前', '３日前', '２日前', '１日前', '今日'],
