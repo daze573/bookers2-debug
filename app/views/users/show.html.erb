@@ -87,33 +87,33 @@
       <canvas id="myChart"></canvas>
       <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
       <script>
-      // $(document).on('turbolinks:load', function() {
-        var ctx = document.getElementById('myChart');
-        var myChart = new Chart(ctx, {
+      $(document).on('turbolinks:load', function() {
+        let ctx = document.getElementById('myChart');
+        let myChart = new Chart(ctx, {
           type: 'line',
           data: {
-              labels: ['６日前', '５日前', '４日前', '３日前', '２日前', '１日前', '今日'],
-              datasets: [
-                {
-                  label: '投稿した本の数',
-                  data: [<%= @books.created_6days.count %>, <%= @books.created_5days.count %>, <%= @books.created_4days.count %>, <%= @books.created_3days.count %>, <%= @books.created_2days.count %>, <%= @yesterday_book.count %>, <%= @today_book.count %> ],
-                  backgroundColor: 'rgba(255, 99, 132, 0.2)',
-                  borderColor: 'rgba(255, 99, 132, 1)',
-                }
-              ],
+            labels: ['６日前', '５日前', '４日前', '３日前', '２日前', '１日前', '今日'],
+            datasets: [
+              {
+                label: '投稿した本の数',
+                data: [<%= @books.created_6days.count %>, <%= @books.created_5days.count %>, <%= @books.created_4days.count %>, <%= @books.created_3days.count %>, <%= @books.created_2days.count %>, <%= @yesterday_book.count %>, <%= @today_book.count %> ],
+                backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                borderColor: 'rgba(255, 99, 132, 1)',
+              }
+            ],
           },
           options: {
             title: {
               dispaly: true,
               text: '７日間の投稿数の比較'
             },
-              scales: {
-                  y: {
-                      beginAtZero: true
-                  }
+            scales: {
+              y: {
+                beginAtZero: true
               }
+            }
           }
-        // });
+        });
       });
       </script>
       <%= form_with url: user_search_path(@user), method: :get, local: false do |f| %>
