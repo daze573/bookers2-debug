@@ -9,11 +9,11 @@
     <div class='col-md-8 offset-md-1'>
       <h2>Books</h2>
       <%= render 'books/index',books: @books %>
-      <h2>投稿数の前日比・前週比</h2>
+      <h2 class="mt-5">投稿数の前日比・前週比</h2>
       <div class = "table_width">
         <table class="table table-bordered">
           <thead>
-            <tr>
+            <tr class="table-secondary">
               <th style="width: 40%">今日の投稿数</th>
               <th style="width: 40%">前日の投稿数</th>
               <th style="width: 20%">前日比</th>
@@ -37,7 +37,7 @@
 
         <table class="table table-bordered">
           <thead>
-            <tr>
+            <tr class="table-secondary">
               <th style="width: 40%">今週の投稿</th>
               <th style="width: 40%">先週の投稿</th>
               <th style="width: 20%">前週比</th>
@@ -61,7 +61,7 @@
 
         <table class="table table-bordered">
           <thead>
-            <tr>
+            <tr class="table-secondary">
               <th>６日前</th>
               <th>５日前</th>
               <th>４日前</th>
@@ -117,7 +117,7 @@
       </script>
       <%= form_with url: user_search_path(@user), method: :get, local: false do |f| %>
         <%= f.date_field :created_at %>
-        <%= f.submit '検索', class: 'btn btn-primary'  %>
+        <%= f.submit '検索', class: 'btn btn-primary btn-sm' %>
       <% end %>
 
       <div id="search_result">
