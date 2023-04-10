@@ -14,21 +14,19 @@ class BooksController < ApplicationController
   def index
     to = Time.current.at_end_of_day
     from = (to - 6.day).at_beginning_of_day
-    @books = Book.includes(:favorited_users).sort {|a,b|
-      b.favorited_users.includes(:favorites).where(created_at: from...to).size <=>
-      a.favorited_users.includes(:favorites).where(created_at: from...to).size
-    }
+    books = Book.includes(:favorited_users)
+    if params[:latest]
+      @books = Book.latest.page(params[:page]).per(5)
+    elsif params[:old]
+      @books = Book.old.page(params[:page]).per(5)
+    elsif params[:star_count]
+      @books = Book.star_count.page(params[:page]).per(5)
+    else
+      books = books.sort_by {|x| x.favorited_users.includes(:favorites).where(created_at: from...to).size }.reverse
+      @books = Kaminari.paginate_array(books).page(params[:page]).per(5)
+    end
     @book = Book.new
     @user = @book.user
-    if params[:latest]
-      @books = Book.latest
-    elsif params[:old]
-      @books = Book.old
-    elsif params[:star_count]
-      @books = Book.star_count
-    else
-      @books = Book.all
-    end
   end
 
   def create
